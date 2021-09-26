@@ -57,8 +57,8 @@ namespace BVH
         double frameDuartion;   // 每帧的持续时间
         vector<double> motions; // 存放文件所有的运动数据块
 
-        vector<Joint *> joints;
-        vector<Joint *> channels;
+        // vector<Joint *> joints;
+        // vector<Joint *> channels;
         map<string, Joint> mapJoint; // 关节名字和关节数据对应的 map
         map<string, int> mapKeyword;
 
@@ -72,6 +72,7 @@ namespace BVH
         bool judgeFileType(string filePath);
         static bool delSubstr(char c); // 该函数作为回调函数
         string getKeyword(vector<string>::iterator it);
+        void setJointData(Joint *parentJoint, vector<string>::iterator it);
     };
 } // namespace BVH
 

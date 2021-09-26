@@ -9,8 +9,7 @@ void BvhFile::loadFile(string filePath)
     string line;
     vector<string> lines;
     string keyword;
-    Joint *joint = nullptr;
-    Joint *newJoint = nullptr;
+    Joint *parentJoint = new Joint;
     // bool isEndSite = false;
     fileName = getFileName(filePath);
     bool isBvhfile = judgeFileType(filePath);
@@ -51,6 +50,7 @@ void BvhFile::loadFile(string filePath)
         switch (mapKeyword.find(keyword)->second)
         {
         case 1:
+            setJointData(parentJoint, it);
             break;
         case 2:
             break;
@@ -60,6 +60,10 @@ void BvhFile::loadFile(string filePath)
             break;
         case 5:
             break;
+        case 6:
+            break;
+        case 7:
+            break;
         default:
             break;
         }
@@ -68,8 +72,8 @@ void BvhFile::loadFile(string filePath)
 
 void BvhFile::resetData()
 {
-    channels.clear();
-    joints.clear();
+    // channels.clear();
+    // joints.clear();
     motions.clear();
 
     loadFileState = false; // 文件状态设置为未加载
@@ -112,4 +116,11 @@ string BvhFile::getKeyword(vector<string>::iterator it)
 {
     int index = it->find_first_of(" ");
     return it->substr(0, index);
+}
+
+// 写入关节数据
+void BvhFile::setJointData(Joint *parentJoint, vector<string>::iterator it)
+{
+    string jointName = it->substr(it->find_first_of(" ") + 1); // 获取关节名字
+    mapJoint[jointName] = *parentJoint;
 }
