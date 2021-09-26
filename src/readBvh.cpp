@@ -16,7 +16,7 @@ void BvhFile::loadFile(string filePath)
 
     if (!isBvhfile)
     {
-        cerr << "filetpye is error";
+        cerr << "the type of file is error!";
         return;
     }
 
@@ -50,9 +50,8 @@ void BvhFile::loadFile(string filePath)
         switch (mapKeyword.find(keyword)->second)
         {
         case 1:
-            setJointData(parentJoint, it);
-            break;
         case 2:
+            setJointName(parentJoint, it);
             break;
         case 3:
             break;
@@ -63,6 +62,7 @@ void BvhFile::loadFile(string filePath)
         case 6:
             break;
         case 7:
+            ++numJoint;
             break;
         default:
             break;
@@ -119,7 +119,7 @@ string BvhFile::getKeyword(vector<string>::iterator it)
 }
 
 // 写入关节数据
-void BvhFile::setJointData(Joint *parentJoint, vector<string>::iterator it)
+void BvhFile::setJointName(Joint *parentJoint, vector<string>::iterator it)
 {
     string jointName = it->substr(it->find_first_of(" ") + 1); // 获取关节名字
     mapJoint[jointName] = *parentJoint;
