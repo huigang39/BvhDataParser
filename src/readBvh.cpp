@@ -54,8 +54,10 @@ void BvhFile::loadFile(string filePath)
             setJointName(parentJoint, it);
             break;
         case 3:
+            setChannels(parentJoint, it);
             break;
         case 4:
+            setOffsetValue(parentJoint, it);
             break;
         case 5:
             break;
@@ -114,13 +116,38 @@ bool BvhFile::delSubstr(char c)
 // 获取关键字
 string BvhFile::getKeyword(vector<string>::iterator it)
 {
-    int index = it->find_first_of(" ");
+    int index = it->find(" ");
     return it->substr(0, index);
 }
 
-// 写入关节数据
+// 写入关节名字
 void BvhFile::setJointName(Joint *parentJoint, vector<string>::iterator it)
 {
-    string jointName = it->substr(it->find_first_of(" ") + 1); // 获取关节名字
+    string jointName = it->substr(it->find(" ") + 1); // 获取关节名字
     mapJoint[jointName] = *parentJoint;
+}
+
+// 写入 OFFSET 数据
+void BvhFile::setOffsetValue(Joint *parentJoint, vector<string>::iterator it)
+{
+    string offset[3];
+    for (int i = 0; i < 3; ++i)
+    {
+        // TODO
+        static int lastPos;
+        lastPos = it->find(" ", lastPos) + 1;
+        static int nowPos;
+        nowPos = it->find(" ", lastPos);
+        static int dataInterval = nowPos - lastPos;
+        offset[i] = it->substr(lastPos, dataInterval);
+    }
+
+    // offset[0] = it->substr(0, it->find_first_of(" "));
+    // parentJoint->offset[0] = atof(offset.c_str());
+}
+
+// 写入 CHANNELS 数据
+void BvhFile::setChannels(Joint *parentJoint, vector<string>::iterator it)
+{
+
 }

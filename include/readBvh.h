@@ -25,15 +25,15 @@ namespace BVH
     // 关节
     struct Joint
     {
-        int index;   // 索引
-        string name; // 关节名字
+        // int index;   // 索引
+        // string name; // 关节名字
 
-        Joint *parent;            // 父关节
+        Joint *parent = nullptr;  // 父关节
         vector<Joint *> children; // 子关节
 
-        double offset[3]; // 相对于父关节的偏移量(X,Y,Z)
-        double site[3];   // 提供前关节的 OFFSET
-        bool hasEndSite;  // 该关节是否有 End Site 这个值
+        double offset[3] = {0, 0, 0}; // 相对于父关节的偏移量(X,Y,Z)
+        double site[3] = {0, 0, 0};   // 提供前关节的 OFFSET
+        bool hasEndSite = false;      // 该关节是否有 End Site 这个值
 
         vector<Channel *> channel; // 该关节的位姿 CHANNEL 信息
     };
@@ -41,21 +41,22 @@ namespace BVH
     // CHANNELS 自由度
     struct Channel
     {
-        int index;                // 索引
-        Joint *joint;             // 该 CHANNEL 对应的关节
+        int index = 0;            // 索引
+        Joint *joint = nullptr;   // 该 CHANNEL 对应的关节
         ChannelsEnum typeChannel; // CHANNEL 的类型
     };
 
     class BvhFile
     {
     private:
-        bool loadFileState; // 加载文件的状态(成功/失败)
-        string fileName;    // 文件名字
+        bool loadFileState = false; // 加载文件的状态(成功/失败)
+        string fileName = "";       // 文件名字
 
-        int numChannel;         // 文件总 CHANNELS 数
-        int numFrame;           // 文件总帧数
-        double frameDuartion;   // 每帧的持续时间
-        vector<double> motions; // 存放文件所有的运动数据块
+        int numJoint = 0;         // 关节的数量
+        int numChannel = 0;       // 文件总 CHANNELS 数
+        int numFrame = 0;         // 文件总帧数
+        double frameDuartion = 0; // 每帧的持续时间
+        vector<double> motions;   // 存放文件所有的运动数据块
 
         // vector<Joint *> joints;
         // vector<Joint *> channels;
@@ -68,11 +69,13 @@ namespace BVH
         void loadFile(string filePath); // 读取文件数据
         void resetData();               // 重置容器中的读取的文件数据
 
-        string getFileName(string filePath);
-        bool judgeFileType(string filePath);
-        static bool delSubstr(char c); // 该函数作为回调函数
-        string getKeyword(vector<string>::iterator it);
-        void setJointData(Joint *parentJoint, vector<string>::iterator it);
+        string getFileName(string filePath);                                  // 获取文件名字
+        bool judgeFileType(string filePath);                                  // 判断文件类型是否为 BVH
+        static bool delSubstr(char c);                                        // 该函数作为回调函数
+        string getKeyword(vector<string>::iterator it);                       // 获取关键字
+        void setJointName(Joint *parentJoint, vector<string>::iterator it);   // 写入关节名字
+        void setOffsetValue(Joint *parentJoint, vector<string>::iterator it); // 写入 OFFSET 数据
+        void setChannels(Joint *parentJoint, vector<string>::iterator it);    // 写入 CHANNELS 数据
     };
 } // namespace BVH
 
