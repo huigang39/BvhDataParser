@@ -35,7 +35,7 @@ namespace BVH
         double site[3] = {0, 0, 0};   // 提供前关节的 OFFSET
         bool hasEndSite = false;      // 该关节是否有 End Site 这个值
 
-        vector<Channel *> channel; // 该关节的位姿 CHANNEL 信息
+        vector<Channel> channel; // 该关节的位姿 CHANNEL 信息
     };
 
     // CHANNELS 自由度
@@ -71,11 +71,11 @@ namespace BVH
 
         string getFileName(string filePath);                                  // 获取文件名字
         bool judgeFileType(string filePath);                                  // 判断文件类型是否为 BVH
-        static bool delSubstr(char c);                                        // 该函数作为回调函数
-        string getKeyword(vector<string>::iterator it);                       // 获取关键字
-        void setJointName(Joint *parentJoint, vector<string>::iterator it);   // 写入关节名字
-        void setOffsetValue(Joint *parentJoint, vector<string>::iterator it); // 写入 OFFSET 数据
-        void setChannels(Joint *parentJoint, vector<string>::iterator it);    // 写入 CHANNELS 数据
+        static bool delSubstr(char c);                                        // 删除读取的字符串中的特定字符,该函数作为回调函数
+        vector<string> splitString(const string &str, const string &pattern); // 分割字符串
+        void setJointName(Joint *parentJoint, vector<string> keyword);        // 写入关节名字
+        void setOffsetValue(Joint *parentJoint, vector<string> keyword);      // 写入 OFFSET 数据
+        void setChannels(Joint *parentJoint, vector<string> keyword);         // 写入 CHANNELS 数据
     };
 } // namespace BVH
 
