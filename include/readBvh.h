@@ -64,6 +64,8 @@ namespace BVH
 
         int leftBracket = 0;
         int rightBracket = 0;
+        int rightBracketLevel = 0;
+        bool isEndSite = false;
 
     public:
         BvhFile() { resetData(); };     //创建对象时调用
@@ -71,15 +73,15 @@ namespace BVH
         void loadFile(string filePath); // 读取文件数据
         void resetData();               // 重置容器中的读取的文件数据
 
-        string getFileName(string filePath);                                                        // 获取文件名字
-        bool judgeFileType(string filePath);                                                        // 判断文件类型是否为 BVH
-        static bool delSubstr(char c);                                                              // 删除读取的字符串中的特定字符,该函数作为回调函数
-        vector<string> splitString(const string &str, const string &pattern);                       // 分割字符串
-        string setJointName(vector<string> keyword);                                                // 写入关节名字
-        void addChildrenJoint(string parentJointName, string nowJointName, vector<string> keyword); // 为关节添加子关节
-        void setOffsetValue(string nowJointName, vector<string> keyword);                           // 写入 OFFSET 数据
-        void setChannels(string nowJointName, vector<string> keyword);                              // 写入 CHANNELS 数据
-        void setEndSiteValue(string nowJointName);                                                  // 写入 End Site 值
+        string getFileName(string filePath);                                     // 获取文件名字
+        bool judgeFileType(string filePath);                                     // 判断文件类型是否为 BVH
+        static bool delSubstr(char c);                                           // 删除读取的字符串中的特定字符,该函数作为回调函数
+        vector<string> splitString(const string &str, const string &pattern);    // 分割字符串
+        string setJointName(vector<string> keyword);                             // 写入关节名字
+        void addChildrenJoint(vector<string> jointName, vector<string> keyword); // 为关节添加子关节
+        void setOffsetValue(vector<string> jointName, vector<string> keyword);   // 写入 OFFSET 数据
+        void setChannels(vector<string> jointName, vector<string> keyword);      // 写入 CHANNELS 数据
+        void setEndSiteValue(vector<string> jointName);                          // 写入 End Site 值
     };
 } // namespace BVH
 

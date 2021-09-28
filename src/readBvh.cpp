@@ -38,13 +38,12 @@ void BvhFile::loadFile(string filePath)
 
     mapKeyword["ROOT"] = 1;
     mapKeyword["JOINT"] = 2;
-    mapKeyword["CHANNELS"] = 3;
-    mapKeyword["OFFSET"] = 4;
+    mapKeyword["OFFSET"] = 3;
+    mapKeyword["CHANNELS"] = 4;
     mapKeyword["End"] = 5;
     mapKeyword["{"] = 6;
     mapKeyword["}"] = 7;
-    string parentJointName;
-    string nowJointName;
+    vector<string> jointName;
     vector<string>::iterator it;
     for (it = lines.begin(); it != lines.end(); ++it)
     {
@@ -53,22 +52,20 @@ void BvhFile::loadFile(string filePath)
         {
         case 1:
         case 2:
-            parentJointName = nowJointName;
-            nowJointName = setJointName(keyword);
+            jointName.push_back(setJointName(keyword));
             break;
         case 3:
-            setChannels(nowJointName, keyword);
+            setOffsetValue(jointName, keyword);
             break;
         case 4:
-            setOffsetValue(nowJointName, keyword);
+            setChannels(jointName, keyword);
             break;
         case 5:
-            setEndSiteValue(nowJointName);
+            setEndSiteValue(jointName);
             break;
         case 6:
-            addChildrenJoint(parentJointName, nowJointName, keyword);
-            break;
         case 7:
+            addChildrenJoint(jointName, keyword);
             break;
         default:
             break;
@@ -146,35 +143,95 @@ string BvhFile::setJointName(vector<string> keyword)
     return keyword[1]; //返回关节名字
 }
 
-void BvhFile::addChildrenJoint(string parentJointName, string nowJointName, vector<string> keyword)
+// 为关节添加子关节
+void BvhFile::addChildrenJoint(vector<string> jointName, vector<string> keyword)
 {
-    ++leftBracket;
-    if (leftBracket > 1)
+    if (keyword[0] == "{")
     {
-        mapJoint[parentJointName].children[nowJointName] = (&(mapJoint[nowJointName]));
+        ++leftBracket;
+        if (leftBracket - rightBracket > 1)
+        {
+            if (rightBracket > rightBracketLevel)
+            {
+                if (mapJoint[jointName[leftBracket - rightBracket - 2]].hasEndSite == false)
+                {
+                    mapJoint[jointName[leftBracket - rightBracket - 2]].children[jointName[leftBracket - 2]] = (&(mapJoint[jointName[leftBracket - 2]]));
+                }
+                rightBracketLevel = rightBracket;
+            }
+
+            if (rightBracketLevel > 0)
+            {
+                if (mapJoint[jointName[leftBracket - 3]].hasEndSite == false)
+                {
+                    mapJoint[jointName[leftBracket - 3]].children[jointName[leftBracket - 2]] = (&(mapJoint[jointName[leftBracket - 2]]));
+                }
+            }
+            else if (mapJoint[jointName[leftBracket - 2]].hasEndSite == false)
+            {
+                mapJoint[jointName[leftBracket - 2]].children[jointName[leftBracket - 1]] = (&(mapJoint[jointName[leftBracket - 1]]));
+            }
+        }
+    }
+    if (keyword[0] == "}")
+    {
+        ++rightBracket;
     }
 }
 
 // 写入 OFFSET 数据
-void BvhFile::setOffsetValue(string nowJointName, vector<string> keyword)
+void BvhFile::setOffsetValue(vector<string> jointName, vector<string> keyword)
 {
-    for (int i = 1; i < keyword.size(); ++i)
+    if (isEndSite)
     {
-        mapJoint[nowJointName].offset[i - 1] = stod(keyword[i].c_str());
+        for (int i = 1; i < keyword.size(); ++i)
+        {
+            mapJoint[jointName[leftBracket - 2]].offset[i - 1] = stod(keyword[i].c_str());
+        }
+        isEndSite = false;
+    }
+    else
+    {
+        for (int i = 1; i < keyword.size(); ++i)
+        {
+            if (rightBracket > 0)
+            {
+                mapJoint[jointName[leftBracket - 2]].offset[i - 1] = stod(keyword[i].c_str());
+            }
+            else
+            {
+                mapJoint[jointName[leftBracket - 1]].offset[i - 1] = stod(keyword[i].c_str());
+            }
+        }
     }
 }
 
 // 写入 CHANNELS 数据
-void BvhFile::setChannels(string nowJointName, vector<string> keyword)
+void BvhFile::setChannels(vector<string> jointName, vector<string> keyword)
 {
     for (int i = 2; i < keyword.size(); ++i)
     {
-        mapJoint[nowJointName].channels.push_back(keyword[i]);
+        if (rightBracket > 0)
+        {
+            mapJoint[jointName[leftBracket - 2]].channels.push_back(keyword[i]);
+        }
+        else
+        {
+            mapJoint[jointName[leftBracket - 1]].channels.push_back(keyword[i]);
+        }
     }
 }
 
 // 写入 End Site 值
-void BvhFile::setEndSiteValue(string nowJointName)
+void BvhFile::setEndSiteValue(vector<string> jointName)
 {
-    mapJoint[nowJointName].hasEndSite = true;
+    isEndSite = true;
+    if (rightBracket > 0)
+    {
+        mapJoint[jointName[leftBracket - 2]].hasEndSite = true;
+    }
+    else
+    {
+        mapJoint[jointName[leftBracket - 1]].hasEndSite = true;
+    }
 }
