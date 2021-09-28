@@ -65,7 +65,6 @@ namespace BVH
         int leftBracket = 0;
         int rightBracket = 0;
         int rightBracketLevel = 0;
-        bool isEndSite = false;
 
     public:
         BvhFile() { resetData(); };     //创建对象时调用
@@ -81,7 +80,7 @@ namespace BVH
         void addChildrenJoint(vector<string> jointName, vector<string> keyword); // 为关节添加子关节
         void setOffsetValue(vector<string> jointName, vector<string> keyword);   // 写入 OFFSET 数据
         void setChannels(vector<string> jointName, vector<string> keyword);      // 写入 CHANNELS 数据
-        void setEndSiteValue(vector<string> jointName);                          // 写入 End Site 值
+        void setEndSiteValue(vector<string> jointName, vector<string> keyword);  // 写入 End Site 值
     };
 } // namespace BVH
 
