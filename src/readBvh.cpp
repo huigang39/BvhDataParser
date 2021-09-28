@@ -8,8 +8,7 @@ void BvhFile::loadFile(string filePath)
 {
     string line;
     vector<string> lines;
-    string keyword;
-    Joint *parentJoint = new Joint;
+    // Joint *parentJoint = new Joint;
     // bool isEndSite = false;
     fileName = getFileName(filePath);
     bool isBvhfile = judgeFileType(filePath);
@@ -35,15 +34,18 @@ void BvhFile::loadFile(string filePath)
         lines.push_back(line); //将每一行依次存入到 vector 中
     }
     file.close();
+    line.shrink_to_fit();
 
-    vector<string>::iterator it;
     mapKeyword["ROOT"] = 1;
-    mapKeyword["Joint"] = 2;
+    mapKeyword["JOINT"] = 2;
     mapKeyword["CHANNELS"] = 3;
     mapKeyword["OFFSET"] = 4;
     mapKeyword["End"] = 5;
     mapKeyword["{"] = 6;
     mapKeyword["}"] = 7;
+    string parentJointName;
+    string nowJointName;
+    vector<string>::iterator it;
     for (it = lines.begin(); it != lines.end(); ++it)
     {
         vector<string> keyword = splitString(*it, " ");
@@ -51,20 +53,22 @@ void BvhFile::loadFile(string filePath)
         {
         case 1:
         case 2:
-            setJointName(parentJoint, keyword);
+            parentJointName = nowJointName;
+            nowJointName = setJointName(keyword);
             break;
         case 3:
-            setChannels(parentJoint, keyword);
+            setChannels(nowJointName, keyword);
             break;
         case 4:
-            setOffsetValue(parentJoint, keyword);
+            setOffsetValue(nowJointName, keyword);
             break;
         case 5:
+            setEndSiteValue(nowJointName);
             break;
         case 6:
+            addChildrenJoint(parentJointName, nowJointName, keyword);
             break;
         case 7:
-            ++numJoint;
             break;
         default:
             break;
@@ -136,25 +140,41 @@ vector<string> BvhFile::splitString(const string &str, const string &pattern)
 }
 
 // 写入关节名字
-void BvhFile::setJointName(Joint *parentJoint, vector<string> keyword)
+string BvhFile::setJointName(vector<string> keyword)
 {
-    mapJoint[keyword[1]] = *parentJoint;
+    mapJoint[keyword[1]] = *(new Joint);
+    return keyword[1]; //返回关节名字
+}
+
+void BvhFile::addChildrenJoint(string parentJointName, string nowJointName, vector<string> keyword)
+{
+    ++leftBracket;
+    if (leftBracket > 1)
+    {
+        mapJoint[parentJointName].children[nowJointName] = (&(mapJoint[nowJointName]));
+    }
 }
 
 // 写入 OFFSET 数据
-void BvhFile::setOffsetValue(Joint *parentJoint, vector<string> keyword)
+void BvhFile::setOffsetValue(string nowJointName, vector<string> keyword)
 {
     for (int i = 1; i < keyword.size(); ++i)
     {
-        parentJoint->offset[i - 1] = stod(keyword[i].c_str());
+        mapJoint[nowJointName].offset[i - 1] = stod(keyword[i].c_str());
     }
 }
 
 // 写入 CHANNELS 数据
-void BvhFile::setChannels(Joint *parentJoint, vector<string> keyword)
+void BvhFile::setChannels(string nowJointName, vector<string> keyword)
 {
     for (int i = 2; i < keyword.size(); ++i)
     {
-        parentJoint->channel.push_back(keyword[i]);
+        mapJoint[nowJointName].channels.push_back(keyword[i]);
     }
+}
+
+// 写入 End Site 值
+void BvhFile::setEndSiteValue(string nowJointName)
+{
+    mapJoint[nowJointName].hasEndSite = true;
 }
