@@ -9,19 +9,6 @@ using namespace std;
 
 namespace BVH
 {
-    // enum ChannelsEnum
-    // {
-    //     X_ROTATION, // X 轴旋转
-    //     Y_ROTATION, // Y 轴旋转
-    //     Z_ROTATION, // Z 轴旋转
-    //     X_POSITION, // X 轴平移
-    //     Y_POSITION, // Y 轴平移
-    //     Z_POSITION, // Z 轴平移
-    // };
-
-    // struct Channel; // 前向声明
-    struct Joint;
-
     // 关节
     struct Joint
     {
@@ -32,8 +19,7 @@ namespace BVH
         map<string, Joint *> children; // 子关节
 
         double offset[3] = {0, 0, 0}; // 相对于父关节的偏移量(X,Y,Z)
-        vector<string> channels;      // 该关节的位姿 CHANNEL 信息
-        double site[3] = {0, 0, 0};   // 提供前关节的 OFFSET
+        map<string, double> channels; // 该关节的位姿 CHANNEL 信息
         bool hasEndSite = false;      // 该关节是否有 End Site 这个值
     };
 
@@ -52,10 +38,24 @@ namespace BVH
         string fileName = "";       // 文件名字
 
         int numJoint = 0;         // 关节的数量
+        int numEndSite = 0;       // End Site关节的数量
         int numChannel = 0;       // 文件总 CHANNELS 数
         int numFrame = 0;         // 文件总帧数
         double frameDuartion = 0; // 每帧的持续时间
         vector<double> motions;   // 存放文件所有的运动数据块
+        vector<string> rootChannels = {
+            "Xposition",
+            "Yposition",
+            "Zposition",
+            "Zrotation",
+            "Yrotation",
+            "Xrotation",
+        };
+        vector<string> jointChannels = {
+            "Xrotation",
+            "Yrotation",
+            "Zrotation",
+        };
 
         // vector<Joint *> joints;
         // vector<Joint *> channels;
@@ -81,6 +81,7 @@ namespace BVH
         void setOffsetValue(vector<string> jointName, vector<string> keyword);   // 写入 OFFSET 数据
         void setChannels(vector<string> jointName, vector<string> keyword);      // 写入 CHANNELS 数据
         void setEndSiteValue(vector<string> jointName, vector<string> keyword);  // 写入 End Site 值
+        void setMotionValue(vector<string> jointName, vector<string> keyword);   // 为关节的 CHANNLES 写入 MOTION 值
     };
 } // namespace BVH
 

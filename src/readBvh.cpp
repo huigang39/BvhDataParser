@@ -27,7 +27,7 @@ void BvhFile::loadFile(string filePath)
         cerr << "ifstream open file error!\n";
         return;
     }
-
+    loadFileState = true;
     while (getline(file, line)) //获取每一行数据
     {
         line.erase(std::remove_if(line.begin(), line.end(), &delSubstr), line.end());
@@ -43,6 +43,8 @@ void BvhFile::loadFile(string filePath)
     mapKeyword["CHANNELS"] = 3;
     mapKeyword["{"] = 4;
     mapKeyword["}"] = 4;
+    mapKeyword["Frames"] = 5;
+    mapKeyword["Frame"] = 6;
     vector<string> jointName;
     vector<string>::iterator it;
     for (it = lines.begin(); it != lines.end(); ++it)
@@ -67,7 +69,18 @@ void BvhFile::loadFile(string filePath)
         case 4:
             addChildrenJoint(jointName, keyword);
             break;
+        case 5:
+            numFrame = stoi(keyword[1]); // 总帧数
+            numJoint = jointName.size(); // 关节总数
+            break;
+        case 6:
+            frameDuartion = stod(keyword[2]);
+            break;
         default:
+            if (keyword[0].find(".") != string::npos)
+            {
+                setMotionValue(jointName, keyword);
+            }
             break;
         }
     }
@@ -75,10 +88,9 @@ void BvhFile::loadFile(string filePath)
 
 void BvhFile::resetData()
 {
-    // channels.clear();
-    // joints.clear();
     motions.clear();
-
+    mapJoint.clear();
+    mapKeyword.clear();
     loadFileState = false; // 文件状态设置为未加载
     fileName.clear();
     numChannel = 0;
@@ -176,7 +188,7 @@ void BvhFile::setOffsetValue(vector<string> jointName, vector<string> keyword)
 {
     for (int i = 1; i < keyword.size(); ++i)
     {
-        mapJoint[jointName[leftBracket - 1]].offset[i - 1] = stod(keyword[i].c_str());
+        mapJoint[jointName[leftBracket - 1]].offset[i - 1] = stod(keyword[i]);
     }
 }
 
@@ -185,15 +197,40 @@ void BvhFile::setChannels(vector<string> jointName, vector<string> keyword)
 {
     for (int i = 2; i < keyword.size(); ++i)
     {
-        mapJoint[jointName[leftBracket - 1]].channels.push_back(keyword[i]);
+        mapJoint[jointName[leftBracket - 1]].channels[keyword[i]] = 0;
     }
 }
 
 // 写入 End Site 值
 void BvhFile::setEndSiteValue(vector<string> jointName, vector<string> keyword)
 {
-    if (keyword[1] == jointName[leftBracket])
+    if (keyword[1].find("End") != string::npos)
     {
         mapJoint[jointName[leftBracket]].hasEndSite = true;
+        ++numEndSite;
+    }
+}
+
+// 写入 MOTION 值
+void BvhFile::setMotionValue(vector<string> jointName, vector<string> keyword)
+{
+    int k = 0; // 用来辅助 i 读取 keyword 的数据
+    for (int i = 0; i < 6; ++i)
+    {
+        mapJoint[jointName[0]].channels[rootChannels[i]] = stod(keyword[i]);
+    }
+
+    for (int j = 1; j < jointName.size(); j++)
+    {
+
+        if (mapJoint[jointName[j]].hasEndSite == false)
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                // i,k 用来读取 keyword 的数据,j 用来从 mapJoint 中找到对应的关节
+                mapJoint[jointName[j]].channels[jointChannels[i]] = stod(keyword[(i + 6) + (k * 3)]);
+            }
+            ++k;
+        }
     }
 }
