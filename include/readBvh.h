@@ -52,9 +52,9 @@ namespace BVH
             "Xrotation",
         };
         vector<string> jointChannels = {
-            "Xrotation",
-            "Yrotation",
             "Zrotation",
+            "Yrotation",
+            "Xrotation",
         };
 
         // vector<Joint *> joints;
