@@ -1,0 +1,3 @@
+C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/build/CMakeFiles/BvhDataParser.dir
+C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/build/CMakeFiles/edit_cache.dir
+C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/build/CMakeFiles/rebuild_cache.dir
