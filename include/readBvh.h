@@ -75,6 +75,7 @@ namespace BVH
         string getFileName(string filePath);                                     // 获取文件名字
         bool judgeFileType(string filePath);                                     // 判断文件类型是否为 BVH
         static bool delSubstr(char c);                                           // 删除读取的字符串中的特定字符,该函数作为回调函数
+        void strSpc(string &s);                                                  // 删除每一行字符串前的空格
         vector<string> splitString(const string &str, const string &pattern);    // 分割字符串
         string setJointName(vector<string> keyword);                             // 写入关节名字
         void addChildrenJoint(vector<string> jointName, vector<string> keyword); // 为关节添加子关节

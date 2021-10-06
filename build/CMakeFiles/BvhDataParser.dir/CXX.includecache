@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/readBvh.h
+map
+-
+string
+-
+vector
+-
+
+/home/wanghuigang/code/BvhDataParser/src/readBvh.cpp
+fstream
+-
+iostream
+-
+algorithm
+-
+readBvh.h
+/home/wanghuigang/code/BvhDataParser/src/readBvh.h
+

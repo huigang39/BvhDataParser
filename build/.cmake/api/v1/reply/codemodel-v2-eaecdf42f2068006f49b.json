@@ -6,7 +6,6 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -39,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BvhDataParser::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BvhDataParser-Debug-efbd5063572ebb040f0b.json",
+					"jsonFile" : "target-BvhDataParser-Debug-7bde542d6761136ae797.json",
 					"name" : "BvhDataParser",
 					"projectIndex" : 0
 				}
@@ -49,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/build",
-		"source" : "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser"
+		"build" : "/home/wanghuigang/code/BvhDataParser/build",
+		"source" : "/home/wanghuigang/code/BvhDataParser"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 0
 	}
 }

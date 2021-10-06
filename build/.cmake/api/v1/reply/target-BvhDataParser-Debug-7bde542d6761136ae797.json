@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "BvhDataParser.exe"
-		},
-		{
-			"path" : "BvhDataParser.pdb"
+			"path" : "BvhDataParser"
 		}
 	],
 	"backtrace" : 1,
@@ -45,14 +42,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g  "
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/include"
+					"path" : "/home/wanghuigang/code/BvhDataParser/include"
 				}
 			],
 			"language" : "CXX",
@@ -75,16 +72,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "BvhDataParser",
-	"nameOnDisk" : "BvhDataParser.exe",
+	"nameOnDisk" : "BvhDataParser",
 	"paths" : 
 	{
 		"build" : ".",

@@ -30,6 +30,7 @@ void BvhFile::loadFile(string filePath)
     loadFileState = true;
     while (getline(file, line)) //获取每一行数据
     {
+        strSpc(line);
         line.erase(std::remove_if(line.begin(), line.end(), &delSubstr), line.end());
         lines.push_back(line); //将每一行依次存入到 vector 中
     }
@@ -117,13 +118,24 @@ bool BvhFile::delSubstr(char c)
 {
     switch (c)
     {
-    case ',':
     case ':':
-    case '\t':
         return true;
     default:
         return false;
     }
+}
+
+// 删除每一行字符串前的空格
+void BvhFile::strSpc(string &s)
+{
+    int l = 0;
+    int r = s.length() - 1;
+    while (l <= r && (s[l] == ' ') || (s[l] == '\t'))
+        l++;
+    while (l <= r && (s[r] == ' ') || (s[r] == '\t'))
+        r--;
+    s.erase(r + 1, s.length());
+    s.erase(0, l);
 }
 
 // 分割字符串

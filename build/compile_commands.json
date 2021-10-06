@@ -1,12 +1,12 @@
 [
 {
-  "directory": "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/build",
-  "command": "C:/Users/huiga/mingw64/bin/x86_64-w64-mingw32-g++.exe  @CMakeFiles/BvhDataParser.dir/includes_CXX.rsp -g -o CMakeFiles/BvhDataParser.dir/src/main.cpp.obj -c \"C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/src/main.cpp\"",
-  "file": "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/src/main.cpp"
+  "directory": "/home/wanghuigang/code/BvhDataParser/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/wanghuigang/code/BvhDataParser/include  -g   -o CMakeFiles/BvhDataParser.dir/src/main.cpp.o -c /home/wanghuigang/code/BvhDataParser/src/main.cpp",
+  "file": "/home/wanghuigang/code/BvhDataParser/src/main.cpp"
 },
 {
-  "directory": "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/build",
-  "command": "C:/Users/huiga/mingw64/bin/x86_64-w64-mingw32-g++.exe  @CMakeFiles/BvhDataParser.dir/includes_CXX.rsp -g -o CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.obj -c \"C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/src/readBvh.cpp\"",
-  "file": "C:/Users/huiga/OneDrive - wanghuigang/Desktop/BvhDataParser/src/readBvh.cpp"
+  "directory": "/home/wanghuigang/code/BvhDataParser/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/wanghuigang/code/BvhDataParser/include  -g   -o CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o -c /home/wanghuigang/code/BvhDataParser/src/readBvh.cpp",
+  "file": "/home/wanghuigang/code/BvhDataParser/src/readBvh.cpp"
 }
 ]

@@ -4,5 +4,5 @@
 int main(int, char **)
 {
     BVH::BvhFile bvhFile;
-    bvhFile.loadFile("C:\\Users\\huiga\\Downloads\\cmuconvert-max-113-128\\113\\113_15.bvh");
+    bvhFile.loadFile("/home/wanghuigang/code/BvhDataParser/test/113_15.bvh");
 }

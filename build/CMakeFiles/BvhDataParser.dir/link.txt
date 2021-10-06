@@ -1,3 +1,1 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\BvhDataParser.dir/objects.a
-C:\Users\huiga\mingw64\bin\ar.exe qc CMakeFiles\BvhDataParser.dir/objects.a @CMakeFiles\BvhDataParser.dir\objects1.rsp
-C:\Users\huiga\mingw64\bin\x86_64-w64-mingw32-g++.exe -g -Wl,--whole-archive CMakeFiles\BvhDataParser.dir/objects.a -Wl,--no-whole-archive -o BvhDataParser.exe -Wl,--out-implib,libBvhDataParser.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BvhDataParser.dir\linklibs.rsp
+/bin/x86_64-linux-gnu-g++-9  -g   CMakeFiles/BvhDataParser.dir/src/main.cpp.o CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o  -o BvhDataParser 
