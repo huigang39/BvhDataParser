@@ -180,10 +180,6 @@ void BvhFile::addChildrenJoint(vector<string> jointName, vector<string> keyword)
         ++leftBracket;
         if (leftBracket - rightBracket > 1)
         {
-            if (rightBracket != rightBracketLevel)
-            {
-                rightBracketLevel = rightBracket;
-            }
             if (rightBracket == rightBracketLevel)
             {
                 mapJoint[jointName[leftBracket - 2]].children[jointName[leftBracket - 1]] = (&(mapJoint[jointName[leftBracket - 1]]));
@@ -195,7 +191,13 @@ void BvhFile::addChildrenJoint(vector<string> jointName, vector<string> keyword)
             }
             else
             {
+                rightBracketLevel = rightBracket;
                 mapJoint[jointName[leftBracket - rightBracketLevel - 2]].children[jointName[leftBracket - 1]] = (&(mapJoint[jointName[leftBracket - 1]]));
+
+                const char *fatherJoint = (jointName[leftBracket - rightBracketLevel - 2]).c_str();
+                const char *childJoint = (jointName[leftBracket - 1]).c_str();
+
+                addRelation(fatherJoint, childJoint);
             }
         }
     }
