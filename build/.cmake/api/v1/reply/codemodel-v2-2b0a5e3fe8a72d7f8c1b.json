@@ -38,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BvhDataParser::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BvhDataParser-Debug-7bde542d6761136ae797.json",
+					"jsonFile" : "target-BvhDataParser-Debug-bd5f0f0469dec9da240b.json",
 					"name" : "BvhDataParser",
 					"projectIndex" : 0
 				}
@@ -48,8 +48,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/wanghuigang/code/BvhDataParser/build",
-		"source" : "/home/wanghuigang/code/BvhDataParser"
+		"build" : "/home/wanghuigang/code/cpp/BvhDataParser/build",
+		"source" : "/home/wanghuigang/code/cpp/BvhDataParser"
 	},
 	"version" : 
 	{

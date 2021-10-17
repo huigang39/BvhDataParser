@@ -5,5 +5,9 @@ CMakeFiles/BvhDataParser.dir/src/main.cpp.o: ../include/readBvh.h
 CMakeFiles/BvhDataParser.dir/src/main.cpp.o: ../src/main.cpp
 
 CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o: ../include/readBvh.h
+CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o: ../include/writeNeo4j.h
 CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o: ../src/readBvh.cpp
+
+CMakeFiles/BvhDataParser.dir/src/writeNeo4j.cpp.o: ../include/writeNeo4j.h
+CMakeFiles/BvhDataParser.dir/src/writeNeo4j.cpp.o: ../src/writeNeo4j.cpp
 

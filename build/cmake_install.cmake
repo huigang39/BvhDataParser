@@ -1,4 +1,4 @@
-# Install script for directory: /home/wanghuigang/code/BvhDataParser
+# Install script for directory: /home/wanghuigang/code/cpp/BvhDataParser
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/wanghuigang/code/BvhDataParser/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/wanghuigang/code/cpp/BvhDataParser/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

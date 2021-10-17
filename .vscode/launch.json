@@ -8,7 +8,7 @@
             "name": "g++ - 生成和调试活动文件",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/wanghuigang/code/BvhDataParser/build/BvhDataParser",
+            "program": "/home/wanghuigang/code/cpp/BvhDataParser/build/BvhDataParser",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

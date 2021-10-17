@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/wanghuigang/code/BvhDataParser
+CMAKE_SOURCE_DIR = /home/wanghuigang/code/cpp/BvhDataParser
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/wanghuigang/code/BvhDataParser/build
+CMAKE_BINARY_DIR = /home/wanghuigang/code/cpp/BvhDataParser/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ clean: CMakeFiles/BvhDataParser.dir/clean
 CMakeFiles/BvhDataParser.dir/all:
 	$(MAKE) -f CMakeFiles/BvhDataParser.dir/build.make CMakeFiles/BvhDataParser.dir/depend
 	$(MAKE) -f CMakeFiles/BvhDataParser.dir/build.make CMakeFiles/BvhDataParser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wanghuigang/code/BvhDataParser/build/CMakeFiles --progress-num=1,2,3 "Built target BvhDataParser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wanghuigang/code/cpp/BvhDataParser/build/CMakeFiles --progress-num=1,2,3,4 "Built target BvhDataParser"
 .PHONY : CMakeFiles/BvhDataParser.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/BvhDataParser.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/BvhDataParser/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/cpp/BvhDataParser/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/BvhDataParser.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/BvhDataParser/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/cpp/BvhDataParser/build/CMakeFiles 0
 .PHONY : CMakeFiles/BvhDataParser.dir/rule
 
 # Convenience name for target.

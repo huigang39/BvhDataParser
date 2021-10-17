@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/wanghuigang/code/BvhDataParser
+CMAKE_SOURCE_DIR = /home/wanghuigang/code/cpp/BvhDataParser
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/wanghuigang/code/BvhDataParser/build
+CMAKE_BINARY_DIR = /home/wanghuigang/code/cpp/BvhDataParser/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/BvhDataParser/build/CMakeFiles /home/wanghuigang/code/BvhDataParser/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/cpp/BvhDataParser/build/CMakeFiles /home/wanghuigang/code/cpp/BvhDataParser/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/BvhDataParser/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wanghuigang/code/cpp/BvhDataParser/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,6 +177,33 @@ src/readBvh.cpp.s:
 	$(MAKE) -f CMakeFiles/BvhDataParser.dir/build.make CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.s
 .PHONY : src/readBvh.cpp.s
 
+src/writeNeo4j.o: src/writeNeo4j.cpp.o
+
+.PHONY : src/writeNeo4j.o
+
+# target to build an object file
+src/writeNeo4j.cpp.o:
+	$(MAKE) -f CMakeFiles/BvhDataParser.dir/build.make CMakeFiles/BvhDataParser.dir/src/writeNeo4j.cpp.o
+.PHONY : src/writeNeo4j.cpp.o
+
+src/writeNeo4j.i: src/writeNeo4j.cpp.i
+
+.PHONY : src/writeNeo4j.i
+
+# target to preprocess a source file
+src/writeNeo4j.cpp.i:
+	$(MAKE) -f CMakeFiles/BvhDataParser.dir/build.make CMakeFiles/BvhDataParser.dir/src/writeNeo4j.cpp.i
+.PHONY : src/writeNeo4j.cpp.i
+
+src/writeNeo4j.s: src/writeNeo4j.cpp.s
+
+.PHONY : src/writeNeo4j.s
+
+# target to generate assembly for a file
+src/writeNeo4j.cpp.s:
+	$(MAKE) -f CMakeFiles/BvhDataParser.dir/build.make CMakeFiles/BvhDataParser.dir/src/writeNeo4j.cpp.s
+.PHONY : src/writeNeo4j.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... src/readBvh.o"
 	@echo "... src/readBvh.i"
 	@echo "... src/readBvh.s"
+	@echo "... src/writeNeo4j.o"
+	@echo "... src/writeNeo4j.i"
+	@echo "... src/writeNeo4j.s"
 .PHONY : help
 
 

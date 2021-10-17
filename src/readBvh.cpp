@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include "readBvh.h"
+#include "writeNeo4j.h"
 using namespace BVH;
 
 void BvhFile::loadFile(string filePath)
@@ -118,6 +119,7 @@ bool BvhFile::delSubstr(char c)
 {
     switch (c)
     {
+    case '\r':
     case ':':
         return true;
     default:
@@ -182,6 +184,9 @@ void BvhFile::addChildrenJoint(vector<string> jointName, vector<string> keyword)
             if (rightBracket == rightBracketLevel)
             {
                 mapJoint[jointName[leftBracket - 2]].children[jointName[leftBracket - 1]] = (&(mapJoint[jointName[leftBracket - 1]]));
+                char *nowJointName;
+                nowJointName = strcpy(nowJointName, jointName[leftBracket - 2].c_str());
+                addData(nowJointName);
             }
             else
             {

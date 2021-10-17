@@ -6,5 +6,5 @@ CXX_FLAGS = -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/wanghuigang/code/BvhDataParser/include 
+CXX_INCLUDES = -I/home/wanghuigang/code/cpp/BvhDataParser/include 
 

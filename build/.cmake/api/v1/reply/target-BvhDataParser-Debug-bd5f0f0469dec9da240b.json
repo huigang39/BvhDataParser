@@ -49,14 +49,15 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/wanghuigang/code/BvhDataParser/include"
+					"path" : "/home/wanghuigang/code/cpp/BvhDataParser/include"
 				}
 			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -72,6 +73,10 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lneo4j-client",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
@@ -90,7 +95,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -100,6 +106,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/writeNeo4j.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

@@ -1,1 +1,1 @@
-/bin/x86_64-linux-gnu-g++-9  -g   CMakeFiles/BvhDataParser.dir/src/main.cpp.o CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o  -o BvhDataParser 
+/bin/x86_64-linux-gnu-g++-9  -g   CMakeFiles/BvhDataParser.dir/src/main.cpp.o CMakeFiles/BvhDataParser.dir/src/writeNeo4j.cpp.o CMakeFiles/BvhDataParser.dir/src/readBvh.cpp.o  -o BvhDataParser  -lneo4j-client 

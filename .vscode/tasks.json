@@ -11,7 +11,9 @@
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-I",
-                "/home/wanghuigang/code/BvhDataParser/include"
+                "/home/wanghuigang/code/BvhDataParser/include",
+                "-l",
+                "neo4j-client"
             ],
             "options": {
                 "cwd": "${fileDirname}"

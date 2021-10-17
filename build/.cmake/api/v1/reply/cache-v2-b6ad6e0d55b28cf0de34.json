@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/wanghuigang/code/BvhDataParser/build"
+			"value" : "/home/wanghuigang/code/cpp/BvhDataParser/build"
 		},
 		{
 			"name" : "BvhDataParser_SOURCE_DIR",
@@ -23,7 +23,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/wanghuigang/code/BvhDataParser"
+			"value" : "/home/wanghuigang/code/cpp/BvhDataParser"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -79,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/wanghuigang/code/BvhDataParser/build"
+			"value" : "/home/wanghuigang/code/cpp/BvhDataParser/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -619,7 +619,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/wanghuigang/code/BvhDataParser"
+			"value" : "/home/wanghuigang/code/cpp/BvhDataParser"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
