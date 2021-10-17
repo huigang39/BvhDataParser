@@ -3,8 +3,10 @@
 
 #include <neo4j-client.h>
 #include <errno.h>
+#include <string.h>
 #include <stdio.h>
 
-int addData(const char *jointName);
+int addJoint(const char *jointName);
+int addRelation(const char *fatherJoint, const char *childJoint);
 
 #endif

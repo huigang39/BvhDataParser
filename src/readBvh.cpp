@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include "string.h"
 #include "readBvh.h"
 #include "writeNeo4j.h"
 using namespace BVH;
@@ -166,6 +167,8 @@ vector<string> BvhFile::splitString(const string &str, const string &pattern)
 string BvhFile::setJointName(vector<string> keyword)
 {
     mapJoint[keyword[1]] = *(new Joint);
+    const char *nowJointName = (keyword[1]).c_str();
+    addJoint(nowJointName);
     return keyword[1]; //返回关节名字
 }
 
@@ -184,9 +187,11 @@ void BvhFile::addChildrenJoint(vector<string> jointName, vector<string> keyword)
             if (rightBracket == rightBracketLevel)
             {
                 mapJoint[jointName[leftBracket - 2]].children[jointName[leftBracket - 1]] = (&(mapJoint[jointName[leftBracket - 1]]));
-                char *nowJointName;
-                nowJointName = strcpy(nowJointName, jointName[leftBracket - 2].c_str());
-                addData(nowJointName);
+
+                const char *fatherJoint = (jointName[leftBracket - 2]).c_str();
+                const char *childJoint = (jointName[leftBracket - 1]).c_str();
+
+                addRelation(fatherJoint, childJoint);
             }
             else
             {

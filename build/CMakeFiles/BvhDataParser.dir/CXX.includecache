@@ -6,31 +6,19 @@
 
 #IncludeRegexTransform: 
 
-../include/readBvh.h
-map
--
-string
--
-vector
--
-
 ../include/writeNeo4j.h
 neo4j-client.h
 -
 errno.h
 -
+string.h
+-
 stdio.h
 -
 
-/home/wanghuigang/code/cpp/BvhDataParser/src/readBvh.cpp
-fstream
--
-iostream
--
-algorithm
--
-readBvh.h
-/home/wanghuigang/code/cpp/BvhDataParser/src/readBvh.h
+/home/wanghuigang/code/cpp/BvhDataParser/src/writeNeo4j.cpp
 writeNeo4j.h
 /home/wanghuigang/code/cpp/BvhDataParser/src/writeNeo4j.h
+stdio.h
+-
 

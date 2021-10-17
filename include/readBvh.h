@@ -2,7 +2,6 @@
 #define _READBVH_H
 
 #include <map>
-#include <string>
 #include <vector>
 
 using namespace std;
